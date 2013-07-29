@@ -90,3 +90,172 @@ Adicione o usuário que irá administrar o e-cidade no grupo “www-data”. Ess
 
 Adicione a seguinte linha (onde “usuario1” deve ser trocado pelo seu usuário criado na instalação do Ubuntu):
 <br>`www-data:x:33:usuario1`</br>
+
+##4.2 - Instalando o PHP 5
+
+Execute o seguinte comando para instalar os pacotes necessários:
+<br>`sudo apt-get install php5 php5-gd php5-pgsql php5-cli php5-mhash php5-mcrypt`</br>
+
+Crie a pasta para os logs do PHP5:
+<br>`sudo mkdir /var/www/log`</br>
+<br>`sudo chown -R www-data.www-data /var/www/log`</br>
+
+Agora é necessário editar o arquivo /etc/php5/apache2/php.ini:
+<br>`sudo gedit /etc/php5/apache2/php.ini`</br>
+
+Modifique os seguintes parâmetros:
+
+`register_globals = On`
+<br>`register_long_arrays = On`</br>
+<br>`register_argc_argv = On`</br>
+<br>`post_max_size = 64M`</br>
+<br>`magic_quotes_gpc = On`</br>
+<br>`upload_max_filesize = 64M`</br>
+<br>`default_socket_timeout = 60000`</br>
+<br>`max_execution_time = 60000`</br>
+<br>`max_input_time = 60000`</br>
+<br>`memory_limit = 512M`</br>
+<br>`allow_call_time_pass_reference = On`</br>
+<br>`error_reporting = E_ALL & ~E_NOTICE`</br>
+<br>`display_errors = Off`</br>
+<br>`log_errors = On`</br>
+<br>`error_log = /var/www/log/php-scripts.log`(retirar o ponto e vírgula da frente da linha)</br> 
+<br>`session.gc_maxlifetime = 7200`</br>
+
+Caso a linha desses parâmetros estejam comentadas, ou seja, iniciando com o caractere '#', remova este.
+
+## 4.3 - Instalando o PostgreSQL 8.2
+
+Este será o banco de dados usado para armazenar as informações que serão usadas pelo software e-cidade. Para esta instalação será necessário baixar o PostgreSQL versão 8.2.
+Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
+`sudo gedit /etc/apt/sources.list`
+
+Acrescente a seguinte linha ao final do arquivo:
+`deb http://br.archive.ubuntu.com/ubuntu hardy main universe`
+  
+Agora, para instalar o PostgreSQL 8.2 deve-se executar os seguintes comandos:
+`sudo apt-get update`
+<br>`sudo apt-get install postgresql-8.2`</br>
+  
+**Configurando o Cluster.**
+
+Cluster é o conjunto de banco de dados gerenciados por uma única instância (conjunto de datafiles, arquivos de controle e processos no servidor que formam um SGDB). Nessa instalação será usado o cluster do PostgreSQL 8.2 onde será instalado o e-cidade e encoding LATIN1(ISO-8859-1). Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:
+<br>`sudo gedit /etc/postgresql/8.2/main/pg_hba.conf`</br>
+Altere as linhas no final do arquivo que estão sem o caractere '#', colocando “trust” no lugar da última coluna. Assim:
+<br>`local all all                trust`</br>
+<br>`host all all 127.0.0.1/32    trust`</br>
+<br>`host all all ::1/128         trust`</br>
+		
+Recarregue as configurações do PostgreSQL:
+<br>`sudo /etc/init.d/postgresql-8.2 reload`</br>
+	
+Verifique o cluster atual:
+<br>`psql -U postgres -hlocalhost -l`</br>
+Veja se o comando retorna o seguinte resultado:	
+
+![](https://raw.github.com/marcuslobo/manualecidades/master/imagens/6.png) &nbsp;
+
+No caso acima precisamos recriar o cluster executando os próximos passos:
+
+Remova o cluster atual:
+<br>`sudo pg_dropcluster -stop 8.2 main`</br>
+			
+Crie o novo cluster como LATIN1:
+<br>`sudo pg_createcluster -e LATIN1 8.2 main`</br>
+	
+Inicie o PostgreSQL:
+<br>`sudo /etc/init.d/postgresql-8.2 start`</br>
+		
+Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:
+<br>`sudo gedit /etc/postgresql/8.2/main/pg_hba.conf`</br>
+
+Altere as linhas no final do arquivo que estão sem o caractere '#', colocando “trust” no lugar da última coluna. Assim:
+<br>`local all all                trust`</br>
+<br>`host all all 127.0.0.1/32    trust`</br>
+<br>`host all all ::1/128         trust`</br>
+	
+Recarregue as configurações do PostgreSQL:
+<br>`sudo /etc/init.d/postgresql-8.2 reload`</br>
+
+Novamente, verifique o encoding do cluster:
+<br>`psql -U postgres -hlocalhost -l`</br>
+		
+![](https://raw.github.com/marcuslobo/manualecidades/master/imagens/7.png) &nbsp;
+
+***ATENÇÃO! Se o resultado do seu comando foi a tabela mostrada acima, pule os próximos passos, indo direto para a parte “Configurando o PostgreSQL 8.2”. Caso o resultado do comando seja algo diferente da tabela acima, então o sistema operacional instalado está sem suporte ao encoding LATIN1. Assim, é será necessário realizar os passos abaixo:***
+
+Edite o arquivo /var/lib/locales/support.d/local
+<br>`sudo gedit /var/lib/locales/support.d/local`</br>
+
+Adicione:
+<br>`pt_BR.ISO-8859-1 ISO-8859-1`</br>
+
+Edite o arquivo /etc/locale.alias:
+<br>``</br>sudo gedit /etc/locale.alias
+
+Adicione: 
+<br>`pt_BR pt_BR.ISO-8859-1`</br>
+
+Reconfigure o locales:
+<br>`</br>sudo dpkg-reconfigure locales`
+<br>`export LANG=pt_BR.ISO-8859-1 `</br>
+<br>`sudo pg_createcluster -e LATIN1 8.2 main`</br>
+
+Inicie o servidor PostgreSQL:
+<br>`sudo /etc/init.d/postgresql-8.2 start`</br>
+
+Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:
+<br>`sudo gedit /etc/postgresql/8.2/main/pg_hba.conf`</br>
+
+Altere as linhas ao final do arquivo que estão sem o caractere “#”, colocando “trust” no lugar da última coluna:
+<br>`local all all                trust`</br>
+<br>`host all all 127.0.0.1/32    trust`</br>
+<br>`host all all ::1/128         trust`</br>
+	
+Recarregue as configurações do PostgreSQL:
+<br>`sudo /etc/init.d/postgresql-8.2 reload`</br>
+
+Verifique o encoding:
+<br>`psql -U postgres -h localhost -l`</br>
+	
+O resultado deve ser o seguinte:
+
+![](https://raw.github.com/marcuslobo/manualecidades/master/imagens/7.png) &nbsp;
+
+**Configurando o PostgreSQL 8.2**
+É necessário modificar o arquivo postgresql.conf:
+<br>`sudo gedit /etc/postgresql/8.2/main/postgresql.conf`</br>
+
+Altere os seguintes parâmetros (o restante dos parâmetros ficam inalterados):
+
+<br>`max_fsm_pages = 81000 `</br>
+<br>`max_fsm_relations = 5000`</br>
+<br>`checkpoint_segments = 16`</br>
+<br>`redirect_stderr = on`</br> 
+<br>`log_directory = 'pg_log'`</br> 
+<br>`log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'`</br>
+<br>`log_min_messages = warning`</br>
+<br>`log_min_duration_statement = 5000 # 5 segundos`</br>
+<br>`log_line_prefix = '%t [%p]: [%l-1] user=%u,db=%d'`</br>
+<br>`autovacuum_naptime = 5min `</br>
+<br>`autovacuum_vacuum_threshold = 50`</br>
+<br>`autovacuum_analyze_threshold = 50 `</br>
+<br>`autovacuum_vacuum_cost_delay = 20`</br>
+<br>`add_missing_from = on `</br>
+<br>`default_with_oids = on `</br>     
+<br>`escape_string_warning = off`</br>
+Caso a linha desses parâmetros estejam comentadas, ou seja, iniciando com o caractere '#', remova este.
+
+Reinicie o PostgreSQL:
+<br>`sudo /etc/init.d/postgresql-8.2 restart`</br>
+	
+Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:
+<br>`sudo gedit /etc/postgresql/8.2/main/pg_hba.conf`</br>
+
+Alterar as linhas no final do arquivo que estão sem o caractere “#”, colocando “trust” no lugar da última coluna:
+<br>`local all all                trust`</br>
+<br>`host all all 127.0.0.1/32    trust`</br>
+<br>`host all all ::1/128         trust`</br>
+		
+Recarregue as configurações do PostgreSQL:
+<br>`sudo /etc/init.d/postgresql-8.2 reload`</br>
