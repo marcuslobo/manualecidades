@@ -182,7 +182,7 @@ Novamente, verifique o encoding do cluster:
 		
 ![](https://raw.github.com/marcuslobo/manualecidades/master/imagens/7.png) &nbsp;
 
-***ATENÇÃO! Se o resultado do seu comando foi a tabela mostrada acima, pule os próximos passos, indo direto para a parte “Configurando o PostgreSQL 8.2”. Caso o resultado do comando seja algo diferente da tabela acima, então o sistema operacional instalado está sem suporte ao encoding LATIN1. Assim, é será necessário realizar os passos abaixo:***
+***ATENÇÃO! Se o resultado do seu comando foi a tabela mostrada acima, pule os próximos passos, indo direto para a parte “Configurando o PostgreSQL 8.2”. Caso o resultado do comando seja algo diferente da tabela acima, então o sistema operacional instalado está sem suporte ao encoding LATIN1. Assim, será necessário realizar os passos abaixo:***
 
 Edite o arquivo /var/lib/locales/support.d/local
 <br>`sudo gedit /var/lib/locales/support.d/local`</br>
