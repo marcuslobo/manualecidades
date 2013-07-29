@@ -259,3 +259,27 @@ Alterar as linhas no final do arquivo que estão sem o caractere “#”, coloca
 		
 Recarregue as configurações do PostgreSQL:
 <br>`sudo /etc/init.d/postgresql-8.2 reload`</br>
+
+## 4.4 - Instalação do OpenOffice
+
+Altere o arquivo sources.list:
+<br>`sudo gedit /etc/apt/sources.list`</br>
+
+Remova a seguinte linha que adicionamos no passo de instalação do 
+PostgreSQL:
+<br>`deb http://br.archive.ubuntu.com/ubuntu hardy main universe`</br>
+
+Adicione a seguinte linha:
+<br>`deb http://archive.canonical.com/ lucid partner`</br>
+
+Atualize o repositório:
+<br>`sudo apt-get update`</br>
+
+Para instalar o OpenOffice basta executar:
+<br>`sudo apt-get install openoffice.org-headless openoffice.org-java-common sun-java6-jre`</br>
+
+Altere o arquivo /etc/rc.local/:
+<br>`sudo gedit /etc/rc.local`</br>
+
+Adicione o seguinte texto antes da linha que contém “exit 0”:
+<br>`/usr/bin/soffice -accept="socket,host=localhost,port=8100;urp;" - nofirststartwizard -headless & exit 0`</br>
