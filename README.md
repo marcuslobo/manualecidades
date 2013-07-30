@@ -142,17 +142,22 @@ Agora, para instalar o PostgreSQL 8.2 deve-se executar os seguintes comandos:
 **Configurando o Cluster.**
 
 Cluster é o conjunto de banco de dados gerenciados por uma única instância (conjunto de datafiles, arquivos de controle e processos no servidor que formam um SGDB). Nessa instalação será usado o cluster do PostgreSQL 8.2 onde será instalado o e-cidade e encoding LATIN1(ISO-8859-1). Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:
-<br>`sudo gedit /etc/postgresql/8.2/main/pg_hba.conf`</br>
+
+`sudo gedit /etc/postgresql/8.2/main/pg_hba.conf`
+
 Altere as linhas no final do arquivo que estão sem o caractere '#', colocando “trust” no lugar da última coluna. Assim:
-<br>`local all all                trust`</br>
+`local all all                trust`
 <br>`host all all 127.0.0.1/32    trust`</br>
 <br>`host all all ::1/128         trust`</br>
 		
 Recarregue as configurações do PostgreSQL:
-<br>`sudo /etc/init.d/postgresql-8.2 reload`</br>
+
+`sudo /etc/init.d/postgresql-8.2 reload`
 	
 Verifique o cluster atual:
-<br>`psql -U postgres -hlocalhost -l`</br>
+
+`psql -U postgres -hlocalhost -l`
+
 Veja se o comando retorna o seguinte resultado:	
 
 ![](https://raw.github.com/marcuslobo/manualecidades/master/imagens/6.png) &nbsp;
@@ -193,7 +198,7 @@ Adicione:
 <br>`pt_BR.ISO-8859-1 ISO-8859-1`</br>
 
 Edite o arquivo /etc/locale.alias:
-<br>``</br>sudo gedit /etc/locale.alias
+<br>`sudo gedit /etc/locale.alias`</br>
 
 Adicione: 
 <br>`pt_BR pt_BR.ISO-8859-1`</br>
@@ -230,7 +235,7 @@ O resultado deve ser o seguinte:
 
 Altere os seguintes parâmetros (o restante dos parâmetros ficam inalterados):
 
-<br>`max_fsm_pages = 81000 `</br>
+`max_fsm_pages = 81000 `
 <br>`max_fsm_relations = 5000`</br>
 <br>`checkpoint_segments = 16`</br>
 <br>`redirect_stderr = on`</br> 
@@ -245,7 +250,8 @@ Altere os seguintes parâmetros (o restante dos parâmetros ficam inalterados):
 <br>`autovacuum_vacuum_cost_delay = 20`</br>
 <br>`add_missing_from = on `</br>
 <br>`default_with_oids = on `</br>     
-<br>`escape_string_warning = off`</br>
+`escape_string_warning = off`
+
 Caso a linha desses parâmetros estejam comentadas, ou seja, iniciando com o caractere '#', remova este.
 
 Reinicie o PostgreSQL:
@@ -293,55 +299,77 @@ Feito isso, acesse a pasta /tmp:
 `cd /tmp` 
 	
 Extraia o pacote:
+
 `sudo tar jxvf  e-cidade-2.2.28-linux.completo.tar-22075083.bz2`
 	
 **Criação da base de dados (chamaremos a base de "e-cidade").**
+
 Acesse a seguinte pasta:
+
 `cd e-cidade-2.2.28-linux.completo/sql/`
 
 Crie o usuário dbportal do postgres:
+
 `psql -U postgres -hlocalhost template1 -c "create role dbportal with superuser login password 'dbportal'"`
 
 Crie o usuário dbseller do postgres: 
+
 `psql -U postgres -h localhost template1 -c "create role dbseller with login password 'dbseller'"`
 
 Execute o seguinte comando para criar o banco:
+
 `createdb -U dbportal e-cidade`
 
-Para importar os comandos .SQL de criação da estrutura de dados, execute:
+Para importar os comandos. SQL de criação da estrutura de dados, execute:
+
 `psql -U dbportal e-cidade -f e-cidade-demo-2.2.28.sql`
 
 ## 4.6 Disponibilização do e-cidade
 
 Acesse o pacote e copie os arquivos do e-cidade para a pasta do Apache2:
+
 `cd /tmp/e-cidade-2.2.28-linux.completo`
+
 `sudo cp -r e-cidade /var/www`
 
 Ajuste as permissões da pasta /var/www/e-cidade:
+
 `sudo chown -R usuario1.www-data /var/www/e-cidade`
+
 `sudo chmod -R 775 /var/www/e-cidade`
+
 `sudo chmod -R 777 /var/www/e-cidade/tmp`
 
 Lembre-se que “usuario1” varia de acordo com sua instalação e usuário utilizado.
 
 Confira o arquivo de configuração da base de dados:
+
 `sudo gedit /var/www/e-cidade/libs/db_conn.php` 
 
 As variáveis devem estar da seguinte maneira:
+
 `$DB_USUARIO = “dbportal”;`
+
 `$DB_SENHA = “”; // Ou alguma senha, se foi definida para o usuário dbportal no postgresql` 
+
 `$DB_SERVIDOR = “localhost”;`
+
 `$DB_PORTA = “5432”;`
+
 `$DB_PORTA_ALT = “5432”;` 
+
 `$DB_BASE = “e-cidade”;`
 
 ## 4.7 - Acesso ao e-cidade
 
 Se você optou por instalar o ambiente gráfico, então basta abrir o navegador Firefox e acessar o seguinte endereço:
+
 `http://localhost/e-cidade`
 
 Caso você tenha instalado o servidor sem ambiente gráfico, então apartir de um computador desktop abra o navegador Firefox e acesse o seguinte endereço:
+
 `http://<ip_do_servidor>/e-cidade`
+
 `Onde “ip_do_servidor” indica o entereço IP atribuído na instalação do servidor Ubuntu.`
 
 Na tela de login do e-cidade informar o usuário “dbseller” e deixar a senha em branco.
@@ -357,55 +385,70 @@ sudo gedit  /var/www/e-cidade/config/require_extensions.xml
 
 Onde está assim:
 
-**<browsers>** 
-    ** <browser name='firefox' versao='1.5.*'></browser>** 
-    ** <browser name='firefox' versao='2.0.*'></browser>** 
-    ** <browser name='firefox' versao='3.0.*'></browser>**  
-    ** <browser name='firefox' versao='3.1.*'></browser>**  
-  **</browsers>**
+<browsers>
+    <browser name='firefox' versao='1.5.*'></browser>
+    <browser name='firefox' versao='2.0.*'></browser>
+    <browser name='firefox' versao='3.0.*'></browser>
+    <browser name='firefox' versao='3.1.*'></browser>
+</browsers>
 
 Deverá ficar da seguinte maneira:
 
-**<browsers>** 
-    ** <browser name='firefox' versao='1.5.*'></browser>**  
-    ** <browser name='firefox' versao='2.0.*'></browser>** 
-    ** <browser name='firefox' versao='3.0.*'></browser>**  
-    ** <browser name='firefox' versao='3.1.*'></browser>**  
-    ** <browser name='firefox' versao='3.5.*'></browser>**  
-    ** <browser name='firefox' versao='3.6.*'></browser>**  
-    ** <browser name='msie' versao='6.0.*'></browser>**  
-    ** <browser name='msie' versao='7.0.*'></browser>**  
-    ** <browser name='msie' versao='8.0.*'></browser>**  
-  ** </browsers>** 
+<browsers>
+    <browser name='firefox' versao='1.5.*'></browser>
+    <browser name='firefox' versao='2.0.*'></browser>
+    <browser name='firefox' versao='3.0.*'></browser>
+    <browser name='firefox' versao='3.1.*'></browser>
+    <browser name='firefox' versao='3.5.*'></browser>
+    <browser name='firefox' versao='3.6.*'></browser>
+    <browser name='msie' versao='6.0.*'></browser>
+    <browser name='msie' versao='7.0.*'></browser>
+    <browser name='msie' versao='8.0.*'></browser>
+</browsers>
 
 Reinicie o Apache:
+
 `sudo /etc/init.d/apache2 restart`
 
 ##4.8 - Disponibilização do “e-cidade online”
+
 O pacote e-cidadeonline é o serviço disponível ao cidadão.
 
 Acesse o pacote onde estão os arquivos do e-cidade:
+
 `cd /tmp/e-cidade-2.2.28-linux.completo`
 	
 Copie os arquivos do e-cidade online para a pasta do Apache2:
+
 `sudo cp -r e-cidadeonline /var/www`
 	
 Ajuste as permissões da pasta:
+
 `sudo chown -R usuario1.www-data /var/www/e-cidadeonline`
+
 `sudo chmod -R 775 /var/www/e-cidadeonline`
+
 `sudo chmod -R 777 /var/www/e-cidadeonline/tmp`
 
 Confira o arquivo de configuração da base de dados:
+
 sudo gedit /var/www/e-cidadeonline/libs/db_conn.php 
 	
 As variáveis devem estar da seguinte maneira:
+
 `$DB_INSTITUICAO = 1;`
+
 `$DB_SENHA='; // Ou se for definida alguma senha para o usuario dbportal no postgresql`
+
 `$DB_SERVIDOR = 'localhost';`
+
 `$DB_PORTA= '5432';`
+
 `$DB_BASEDADOS = 'e-cidade';`
 
 Para acessar o e-cidade online, entre no seguinte endereço	:
+
 `http://<ip_do_servidor>/e-cidadeonline`
+
 #5 - Link da Licença Júridica Creative Commons
 http://creativecommons.org/licenses/by-sa/2.0/br/legalcode
