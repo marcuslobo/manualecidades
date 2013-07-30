@@ -186,9 +186,10 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 
 <p>Agora, para instalar o PostgreSQL 8.2 deve-se executar os seguintes comandos:</p>
 
-<pre><p>sudo apt-get update</pre><br><pre>sudo apt-get install postgresql-8.2</p>
+<pre><p>sudo apt-get update<br>
+sudo apt-get install postgresql-8.2</p></pre>
 
-<p><strong>Configurando o Cluster.</strong></p></pre>
+<p><strong>Configurando o Cluster.</strong></p>
 
 <p>Cluster é o conjunto de banco de dados gerenciados por uma única instância (conjunto de datafiles, arquivos de controle e processos no servidor que formam um SGDB). Nessa instalação será usado o cluster do PostgreSQL 8.2 onde será instalado o e-cidade e encoding LATIN1(ISO-8859-1). Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:</p>
 
@@ -243,11 +244,10 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 <p>Edite o arquivo /var/lib/locales/support.d/local
 <br><pre>sudo gedit /var/lib/locales/support.d/local</p>
 
-<p>Adicione:
-<br>pt_BR.ISO-8859-1 ISO-8859-1</p>
-
-<p>Edite o arquivo /etc/locale.alias:
-<br>sudo gedit /etc/locale.alias</pre></p>
+<br>Adicione:
+<br><pre>pt_BR.ISO-8859-1 ISO-8859-1</pre></br>
+<br><pre>Edite o arquivo /etc/locale.alias:</pre></br>
+<br><pre>sudo gedit /etc/locale.alias</pre></p>
 
 <p>Adicione: 
 <br><pre>pt_BR pt_BR.ISO-8859-1</pre></p>
@@ -381,7 +381,7 @@ Feito isso, acesse a pasta /tmp:</p>
 
 <p>Acesse o pacote e copie os arquivos do e-cidade para a pasta do Apache2:</p>
 
-<p><pre>cd /tmp/e-cidade-2.2.28-linux.completo</p>
+<pre>cd /tmp/e-cidade-2.2.28-linux.completo
 
 <br>sudo cp -r e-cidade /var/www</pre>
 
@@ -401,9 +401,9 @@ Feito isso, acesse a pasta /tmp:</p>
 
 <p>As variáveis devem estar da seguinte maneira:</p>
 
-<p><pre>$DB_USUARIO = “dbportal”;</p>
+<pre>$DB_USUARIO = “dbportal”;
 
-<p>$DB_SENHA = “”; // Ou alguma senha, se foi definida para o usuário dbportal no postgresql</p>
+<br>$DB_SENHA = “”; // Ou alguma senha, se foi definida para o usuário dbportal no postgresql
 
 $DB_SERVIDOR = “localhost”;<br>
 
@@ -422,15 +422,14 @@ $DB_BASE = “e-cidade”;</pre><br>
 
 <p>Caso você tenha instalado o servidor sem ambiente gráfico, então apartir de um computador desktop abra o navegador Firefox e acesse o seguinte endereço:</p>
 
-<p><pre>http://&lt;ip_do_servidor&gt;/e-cidade</p>
-
-<p>Onde “ip_do_servidor” indica o entereço IP atribuído na instalação do servidor Ubuntu.</pre></p>
+<pre>http://&lt;ip_do_servidor&gt;/e-cidade<br>
+Onde “ip_do_servidor” indica o entereço IP atribuído na instalação do servidor Ubuntu.</pre>
 
 <p>Na tela de login do e-cidade informar o usuário “dbseller” e deixar a senha em branco.</p>
 
 <b>**ATENÇÃO! Para correto funcionamento do e-cidade, o Firefox deve estar com as janelas “pop-up” desbloqueadas para o IP do Servidor.**</b>
 
-<p><b>Compatibilidade das versões do Firefox</b>:</p>
+<b><b>Compatibilidade das versões do Firefox</b></b>:
 
 <p>O e-cidade é compatível com a versão 3.0 ou inferior do Mozilla Firefox.</p>
 
@@ -481,27 +480,23 @@ sudo gedit  /var/www/e-cidade/config/require_extensions.xml</p>
 
 <p>Ajuste as permissões da pasta:</p>
 
-<p><pre>sudo chown -R usuario1.www-data /var/www/e-cidadeonline</p>
+<pre>sudo chown -R usuario1.www-data /var/www/e-cidadeonline
 
-<p>sudo chmod -R 775 /var/www/e-cidadeonline</p>
+<br>sudo chmod -R 775 /var/www/e-cidadeonline
 
-<p>sudo chmod -R 777 /var/www/e-cidadeonline/tmp</pre></p>
+<p>sudo chmod -R 777 /var/www/e-cidadeonline/tmp</pre>
 
-<p>Confira o arquivo de configuração da base de dados:</p>
+<p>Confira o arquivo de configuração da base de dados:
 
-<p>sudo gedit /var/www/e-cidadeonline/libs/db_conn.php </p>
+<p><pre>sudo gedit /var/www/e-cidadeonline/libs/db_conn.php</pre> 
 
-<p>As variáveis devem estar da seguinte maneira:</p>
+<p>As variáveis devem estar da seguinte maneira:
 
-<p><pre>$DB_INSTITUICAO = 1;</p>
-
-<p><pre>$DB_SENHA='; // Ou se for definida alguma senha para o usuario dbportal no postgresql</p>
-
-<p><pre>$DB_SERVIDOR = 'localhost';</p>
-
-<p>$DB_PORTA= '5432';</p>
-
-<p>$DB_BASEDADOS = 'e-cidade';</pre></p>
+<br><pre>$DB_INSTITUICAO = 1;
+$DB_SENHA='; // Ou se for definida alguma senha para o usuario dbportal no postgresql<br>
+$DB_SERVIDOR = 'localhost';<br>
+$DB_PORTA= '5432';<br>
+$DB_BASEDADOS = 'e-cidade';</pre></br>
 
 <p>Para acessar o e-cidade online, entre no seguinte endereço :</p>
 
