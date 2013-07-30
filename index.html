@@ -169,7 +169,7 @@ Neste guia, sempre que necessário editar algum arquivo, será usado o editor de
 <br>display_errors = Off
 <br>log_errors = On
 <br>error_log = /var/www/log/php-scripts.log(retirar o ponto e vírgula da frente da linha) 
-<br><pre>session.gc_maxlifetime = 7200</pre></p>
+<br>session.gc_maxlifetime = 7200</pre></p>
 
 <p>Caso a linha desses parâmetros estejam comentadas, ou seja, iniciando com o caractere '#', remova este.</p>
 
@@ -438,17 +438,28 @@ sudo gedit  /var/www/e-cidade/config/require_extensions.xml</p>
 
 <p>Onde está assim:</p>
 
-<p><pre>&ltbrowsers&lt
-&ltbrowser name='firefox' versao='1.5.*'&lt&lt/browser&lt
-&ltbrowser name='firefox' versao='2.0.*'&lt&lt/browser&lt
-&ltbrowser name='firefox' versao='3.0.*'&lt&lt/browser&lt
-&ltbrowser name='firefox' versao='3.1.*'&lt&lt/browser&lt
-&lt/browsers&lt
+<p><pre>&ltbrowsers&gt
+&ltbrowser name='firefox' versao='1.5.*'&lt/browser&gt
+&ltbrowser name='firefox' versao='2.0.*'&lt/browser&gt
+&ltbrowser name='firefox' versao='3.0.*'&lt/browser&gt
+&ltbrowser name='firefox' versao='3.1.*'&lt/browser&gt
+&lt/browsers&gt
 </pre></p>
 
 <p>Deverá ficar da seguinte maneira:</p>
 
-<p></p>
+<p><pre>&ltbrowsers&gt
+&ltbrowser name='firefox' versao='1.5.*'&gt&lt/browser&gt
+&ltbrowser name='firefox' versao='2.0.*'&gt&lt/browser&gt
+&ltbrowser name='firefox' versao='3.0.*'&gt&lt/browser&gt
+&ltbrowser name='firefox' versao='3.1.*'&gt&lt/browser&gt
+&ltbrowser name='firefox' versao='3.5.*'&gt&lt/browser&gt
+&ltbrowser name='firefox' versao='3.6.*'&gt&lt/browser&gt
+&ltbrowser name='msie' versao='6.0.*'&gt&lt/browser&gt
+&ltbrowser name='msie' versao='7.0.*'&gt&lt/browser&gt
+&ltbrowser name='msie' versao='8.0.*'&gt&lt/browser&gt
+&lt/browsers&gt
+</pre></p>
 
 <p>Reinicie o Apache:</p>
 
@@ -469,11 +480,11 @@ sudo gedit  /var/www/e-cidade/config/require_extensions.xml</p>
 
 <p>Ajuste as permissões da pasta:</p>
 
-<p><pre>sudo chown -R usuario1.www-data /var/www/e-cidadeonline</pre></p>
+<p><pre>sudo chown -R usuario1.www-data /var/www/e-cidadeonline</p>
 
-<p><pre>sudo chmod -R 775 /var/www/e-cidadeonline</pre></p>
+<p>sudo chmod -R 775 /var/www/e-cidadeonline</p>
 
-<p><pre>sudo chmod -R 777 /var/www/e-cidadeonline/tmp</pre></p>
+<p>sudo chmod -R 777 /var/www/e-cidadeonline/tmp</pre></p>
 
 <p>Confira o arquivo de configuração da base de dados:</p>
 
@@ -489,11 +500,11 @@ sudo gedit  /var/www/e-cidade/config/require_extensions.xml</p>
 
 <p><pre>$DB_PORTA= '5432';</pre></p>
 
-<p><pre>$DB_BASEDADOS = 'e-cidade';</pre></p>
+<p>$DB_BASEDADOS = 'e-cidade';</p>
 
 <p>Para acessar o e-cidade online, entre no seguinte endereço :</p>
 
-<p><pre>http://&lt;ip_do_servidor&gt;/e-cidadeonline</pre></p>
+<p>http://&lt;ip_do_servidor&gt;/e-cidadeonline</pre></p>
 
 <h1>
 <a name="5---link-da-licen%C3%A7a-j%C3%BAridica-creative-commons" class="anchor" href="#5---link-da-licen%C3%A7a-j%C3%BAridica-creative-commons"><span class="octicon octicon-link"></span></a>5 - Link da Licença Júridica Creative Commons</h1>
