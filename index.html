@@ -253,9 +253,9 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 <br><pre>pt_BR pt_BR.ISO-8859-1</pre></p>
 
 <p>Reconfigure o locales:
-<br><pre>&lt;/br&gt;sudo dpkg-reconfigure locales</pre>
-<br><pre>export LANG=pt_BR.ISO-8859-1</pre>
-<br><pre>sudo pg_createcluster -e LATIN1 8.2 main</pre></p>
+<br><pre>&lt;/br&gt;sudo dpkg-reconfigure locales
+<br>>export LANG=pt_BR.ISO-8859-1
+<br>sudo pg_createcluster -e LATIN1 8.2 main</pre></p>
 
 <p>Inicie o servidor PostgreSQL:
 <br><pre>sudo /etc/init.d/postgresql-8.2 start</pre></p>
@@ -298,7 +298,8 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 <br>autovacuum_analyze_threshold = 50
 <br>autovacuum_vacuum_cost_delay = 20
 <br>add_missing_from = on
-<br>default_with_oids = on</pre><br><pre>escape_string_warning = off</pre></p>
+<br>default_with_oids = on
+<br>escape_string_warning = off</pre></p>
 
 <p>Caso a linha desses parâmetros estejam comentadas, ou seja, iniciando com o caractere '#', remova este.</p>
 
@@ -382,7 +383,7 @@ Feito isso, acesse a pasta /tmp:</p>
 
 <p><pre>cd /tmp/e-cidade-2.2.28-linux.completo</p>
 
-<p>sudo cp -r e-cidade /var/www</pre></p>
+<br>sudo cp -r e-cidade /var/www</pre>
 
 <p>Ajuste as permissões da pasta /var/www/e-cidade:</p>
 
@@ -404,13 +405,13 @@ Feito isso, acesse a pasta /tmp:</p>
 
 <p><pre>$DB_SENHA = “”; // Ou alguma senha, se foi definida para o usuário dbportal no postgresql</pre> </p>
 
-<p><pre>$DB_SERVIDOR = “localhost”;</p>
+<pre>$DB_SERVIDOR = “localhost”;<br>
 
-<p>$DB_PORTA = “5432”;</p>
+$DB_PORTA = “5432”;<br>
 
-<p>$DB_PORTA_ALT = “5432”; </p>
+$DB_PORTA_ALT = “5432”; <br>
 
-<p>$DB_BASE = “e-cidade”;</pre></p>
+$DB_BASE = “e-cidade”;</pre><br>
 
 <h2>
 <a name="47---acesso-ao-e-cidade" class="anchor" href="#47---acesso-ao-e-cidade"><span class="octicon octicon-link"></span></a>4.7 - Acesso ao e-cidade</h2>
