@@ -131,11 +131,13 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 `sudo gedit /etc/apt/sources.list`
 
 Acrescente a seguinte linha ao final do arquivo:
+
 `deb http://br.archive.ubuntu.com/ubuntu hardy main universe`
   
 Agora, para instalar o PostgreSQL 8.2 deve-se executar os seguintes comandos:
+
 `sudo apt-get update`
-<br>`sudo apt-get install postgresql-8.2`</br>
+`sudo apt-get install postgresql-8.2`
   
 **Configurando o Cluster.**
 
