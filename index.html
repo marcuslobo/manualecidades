@@ -69,12 +69,12 @@ Direitos que outras pessoas podem ter sobre a obra ou sobre a utilização da ob
 <a name="2---introdu%C3%A7%C3%A3o-ao-sistema-e-cidade" class="anchor" href="#2---introdu%C3%A7%C3%A3o-ao-sistema-e-cidade"><span class="octicon octicon-link"></span></a>2 - Introdução ao Sistema e-cidade</h1>
 
 <p>O <b>e-cidade</b> destina-se a informatizar a gestão dos Municípios Brasileiros de forma integrada. Essa informatização contempla a integração entre os entes municipais: Prefeitura Municipal, Câmara Municipal, Autarquias, Fundações e outros.
-<br>A economia de recursos é somente uma das vantagens na adoção do <b>e-cidade</b>. Há liberdade de escolha dos fornecedores e garantia de continuidade do sistema, uma vez que é apoiado pelo Ministério do Planejamento. </p>
+<br><br>A economia de recursos é somente uma das vantagens na adoção do <b>e-cidade</b>. Há liberdade de escolha dos fornecedores e garantia de continuidade do sistema, uma vez que é apoiado pelo Ministério do Planejamento. </p>
 
 <h2>
 <a name="21---caracter%C3%ADsticas" class="anchor" href="#21---caracter%C3%ADsticas"><span class="octicon octicon-link"></span></a>2.1 - Características</h2>
 
-<p>O código fonte está disponível para ser baixado livremente no Portal do Software Público Brasileiro: <a href="http://www.softwarepublico.gov.br">www.softwarepublico.gov.br</a>.<br> 
+<p>O código fonte está disponível para ser baixado livremente no Portal do Software Público Brasileiro: <a href="http://www.softwarepublico.gov.br">www.softwarepublico.gov.br</a>.<br><br> 
 O sistema possui a seguinte <b>plataforma tecnológica</b>:</p>
 
 <p>LINUX
@@ -95,9 +95,9 @@ JAVA TOMCAT
 <h2>
 <a name="31---informa%C3%A7%C3%B5es-gerais-para-instala%C3%A7%C3%A3o" class="anchor" href="#31---informa%C3%A7%C3%B5es-gerais-para-instala%C3%A7%C3%A3o"><span class="octicon octicon-link"></span></a>3.1 - Informações gerais para instalação</h2>
 
-<p>É recomendado que este guia seja executado por um usuário com experiência em instalação de pacotes no Linux e configuração básica de Apache, PHP e PostgreSQL.<br>
-Este roteiro está baseado no Sistema Operacional GNU/Linux Ubuntu 10.04 LTS. Cabe lembrar que em outras distribuições Linux o processo de instalação pode variar.<br>
-Este manual pressupõe que o servidor de aplicação Web e o banco de dados estarão instalados no mesmo servidor.<br>
+<p>É recomendado que este guia seja executado por um usuário com experiência em instalação de pacotes no Linux e configuração básica de Apache, PHP e PostgreSQL.<br><br>
+Este roteiro está baseado no Sistema Operacional GNU/Linux Ubuntu 10.04 LTS. Cabe lembrar que em outras distribuições Linux o processo de instalação pode variar.<br><br>
+Este manual pressupõe que o servidor de aplicação Web e o banco de dados estarão instalados no mesmo servidor.<br><br>
 Neste guia, sempre que necessário editar algum arquivo, será usado o editor de texto GEDIT. Mas cabe lembrar que é apenas uma opção, existem outros editores como o VIM.</p>
 
 <h1>
@@ -129,9 +129,9 @@ Neste guia, sempre que necessário editar algum arquivo, será usado o editor de
 <p>Caso a linha desse parâmetro esteja comentada, ou seja, iniciando com o caractere '#', remova este.</p>
 
 <p>Deverá ser criada uma pasta de arquivos temporários. Crie a pasta “tmp” no DOCUMENT_ROOT do Apache (/var/www), da seguinte maneira:
-<br><pre>sudo mkdir /var/www/tmp</pre>
-<br><pre>sudo chown -R www-data.www-data /var/www/tmp</pre>
-<br><pre>sudo chmod -R 777 /var/www/tmp</pre></p>
+<br><pre>sudo mkdir /var/www/tmp
+<br>sudo chown -R www-data.www-data /var/www/tmp
+<br>sudo chmod -R 777 /var/www/tmp</pre></p>
 
 <p>Adicione o usuário que irá administrar o e-cidade no grupo “www-data”. Esse usuário varia de acordo com sua instalação. No caso desse manual foi criado um usuário chamado “usuario1”. Deve-se editar o seguinte arquivo:
 <br><pre>sudo gedit /etc/group</pre></p>
@@ -146,29 +146,29 @@ Neste guia, sempre que necessário editar algum arquivo, será usado o editor de
 <br><pre>sudo apt-get install php5 php5-gd php5-pgsql php5-cli php5-mhash php5-mcrypt</pre></p>
 
 <p>Crie a pasta para os logs do PHP5:
-<br><pre>sudo mkdir /var/www/log</pre>
-<br><pre>sudo chown -R www-data.www-data /var/www/log</pre></p>
+<br><pre>sudo mkdir /var/www/log
+<br>sudo chown -R www-data.www-data /var/www/log</pre></p>
 
 <p>Agora é necessário editar o arquivo /etc/php5/apache2/php.ini:
 <br><pre>sudo gedit /etc/php5/apache2/php.ini</pre></p>
 
 <p>Modifique os seguintes parâmetros:</p>
 
-<p><pre>register_globals = On</pre>
-<br><pre>register_long_arrays = On</pre>
-<br><pre>register_argc_argv = On</pre>
-<br><pre>post_max_size = 64M</pre>
-<br><pre>magic_quotes_gpc = On</pre>
-<br><pre>upload_max_filesize = 64M</pre>
-<br><pre>default_socket_timeout = 60000</pre>
-<br><pre>max_execution_time = 60000</pre>
-<br><pre>max_input_time = 60000</pre>
-<br><pre>memory_limit = 512M</pre>
-<br><pre>allow_call_time_pass_reference = On</pre>
-<br><pre>error_reporting = E_ALL &amp; ~E_NOTICE</pre>
-<br><pre>display_errors = Off</pre>
-<br><pre>log_errors = On</pre>
-<br><pre>error_log = /var/www/log/php-scripts.log</pre>(retirar o ponto e vírgula da frente da linha) 
+<p><pre>register_globals = On
+<br>register_long_arrays = On
+<br>register_argc_argv = On
+<br>post_max_size = 64M
+<br>magic_quotes_gpc = On
+<br>upload_max_filesize = 64M
+<br>default_socket_timeout = 60000
+<br>max_execution_time = 60000
+<br>max_input_time = 60000
+<br>memory_limit = 512M
+<br>allow_call_time_pass_reference = On
+<br>error_reporting = E_ALL &amp; ~E_NOTICE
+<br>display_errors = Off
+<br>log_errors = On
+<br>error_log = /var/www/log/php-scripts.log(retirar o ponto e vírgula da frente da linha) 
 <br><pre>session.gc_maxlifetime = 7200</pre></p>
 
 <p>Caso a linha desses parâmetros estejam comentadas, ou seja, iniciando com o caractere '#', remova este.</p>
@@ -186,18 +186,18 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 
 <p>Agora, para instalar o PostgreSQL 8.2 deve-se executar os seguintes comandos:</p>
 
-<p><pre>sudo apt-get update</pre><br><pre>sudo apt-get install postgresql-8.2</pre></p>
+<pre><p>sudo apt-get update</pre><br><pre>sudo apt-get install postgresql-8.2</p>
 
-<p><strong>Configurando o Cluster.</strong></p>
+<p><strong>Configurando o Cluster.</strong></p></pre>
 
 <p>Cluster é o conjunto de banco de dados gerenciados por uma única instância (conjunto de datafiles, arquivos de controle e processos no servidor que formam um SGDB). Nessa instalação será usado o cluster do PostgreSQL 8.2 onde será instalado o e-cidade e encoding LATIN1(ISO-8859-1). Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:</p>
 
 <p><pre>sudo gedit /etc/postgresql/8.2/main/pg_hba.conf</pre></p>
 
 <p>Altere as linhas no final do arquivo que estão sem o caractere '#', colocando “trust” no lugar da última coluna. Assim:
-<br><pre>local all all                trust</pre>
-<br><pre>host all all 127.0.0.1/32    trust</pre>
-<br><pre>host all all ::1/128         trust</pre></p>
+<br><pre>local all all                trust
+<br>host all all 127.0.0.1/32    trust
+<br>host all all ::1/128         trust</pre></p>
 
 <p>Recarregue as configurações do PostgreSQL:</p>
 
@@ -241,13 +241,13 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 <p><strong><em>ATENÇÃO! Se o resultado do seu comando foi a tabela mostrada acima, pule os próximos passos, indo direto para a parte “Configurando o PostgreSQL 8.2”. Caso o resultado do comando seja algo diferente da tabela acima, então o sistema operacional instalado está sem suporte ao encoding LATIN1. Assim, será necessário realizar os passos abaixo:</em></strong></p>
 
 <p>Edite o arquivo /var/lib/locales/support.d/local
-<br><pre>sudo gedit /var/lib/locales/support.d/local</pre></p>
+<br><pre>sudo gedit /var/lib/locales/support.d/local</p>
 
 <p>Adicione:
-<br><pre>pt_BR.ISO-8859-1 ISO-8859-1</pre></p>
+<br>pt_BR.ISO-8859-1 ISO-8859-1</p>
 
 <p>Edite o arquivo /etc/locale.alias:
-<br><pre>sudo gedit /etc/locale.alias</pre></p>
+<br>sudo gedit /etc/locale.alias</pre></p>
 
 <p>Adicione: 
 <br><pre>pt_BR pt_BR.ISO-8859-1</pre></p>
@@ -264,9 +264,9 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 <br><pre>sudo gedit /etc/postgresql/8.2/main/pg_hba.conf</pre></p>
 
 <p>Altere as linhas ao final do arquivo que estão sem o caractere “#”, colocando “trust” no lugar da última coluna:
-<br><pre>local all all                trust</pre>
-<br><pre>host all all 127.0.0.1/32    trust</pre>
-<br><pre>host all all ::1/128         trust</pre></p>
+<br><pre>local all all                trust
+<br>host all all 127.0.0.1/32    trust
+<br>host all all ::1/128         trust</pre></p>
 
 <p>Recarregue as configurações do PostgreSQL:
 <br><pre>sudo /etc/init.d/postgresql-8.2 reload</pre></p>
@@ -284,21 +284,21 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 
 <p>Altere os seguintes parâmetros (o restante dos parâmetros ficam inalterados):</p>
 
-<p><pre>max_fsm_pages = 81000</pre>
-<br><pre>max_fsm_relations = 5000</pre>
-<br><pre>checkpoint_segments = 16</pre>
-<br><pre>redirect_stderr = on</pre> 
-<br><pre>log_directory = 'pg_log'</pre> 
-<br><pre>log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'</pre>
-<br><pre>log_min_messages = warning</pre>
-<br><pre>log_min_duration_statement = 5000 # 5 segundos</pre>
-<br><pre>log_line_prefix = '%t [%p]: [%l-1] user=%u,db=%d'</pre>
-<br><pre>autovacuum_naptime = 5min</pre>
-<br><pre>autovacuum_vacuum_threshold = 50</pre>
-<br><pre>autovacuum_analyze_threshold = 50</pre>
-<br><pre>autovacuum_vacuum_cost_delay = 20</pre>
-<br><pre>add_missing_from = on</pre>
-<br><pre>default_with_oids = on</pre><br><pre>escape_string_warning = off</pre></p>
+<p><pre>max_fsm_pages = 81000
+<br>max_fsm_relations = 5000
+<br>checkpoint_segments = 16
+<br>redirect_stderr = on 
+<br>log_directory = 'pg_log'
+<br>log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'
+<br><log_min_messages = warning
+<br>log_min_duration_statement = 5000 # 5 segundos
+<br>log_line_prefix = '%t [%p]: [%l-1] user=%u,db=%d'
+<br>autovacuum_naptime = 5min
+<br>autovacuum_vacuum_threshold = 50
+<br>autovacuum_analyze_threshold = 50
+<br>autovacuum_vacuum_cost_delay = 20
+<br>add_missing_from = on
+<br>default_with_oids = on</pre><br><pre>escape_string_warning = off</pre></p>
 
 <p>Caso a linha desses parâmetros estejam comentadas, ou seja, iniciando com o caractere '#', remova este.</p>
 
@@ -309,9 +309,9 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 <br><pre>sudo gedit /etc/postgresql/8.2/main/pg_hba.conf</pre></p>
 
 <p>Alterar as linhas no final do arquivo que estão sem o caractere “#”, colocando “trust” no lugar da última coluna:
-<br><pre>local all all                trust</pre>
-<br><pre>host all all 127.0.0.1/32    trust</pre>
-<br><pre>host all all ::1/128         trust</pre></p>
+<br><pre>local all all                trust
+<br>host all all 127.0.0.1/32    trust
+<br>host all all ::1/128         trust</pre></p>
 
 <p>Recarregue as configurações do PostgreSQL:
 <br><pre>sudo /etc/init.d/postgresql-8.2 reload</pre></p>
@@ -380,17 +380,17 @@ Feito isso, acesse a pasta /tmp:</p>
 
 <p>Acesse o pacote e copie os arquivos do e-cidade para a pasta do Apache2:</p>
 
-<p><pre>cd /tmp/e-cidade-2.2.28-linux.completo</pre></p>
+<p><pre>cd /tmp/e-cidade-2.2.28-linux.completo</p>
 
-<p><pre>sudo cp -r e-cidade /var/www</pre></p>
+<p>sudo cp -r e-cidade /var/www</pre></p>
 
 <p>Ajuste as permissões da pasta /var/www/e-cidade:</p>
 
 <p><pre>sudo chown -R usuario1.www-data /var/www/e-cidade</pre></p>
 
-<p><pre>sudo chmod -R 775 /var/www/e-cidade</pre></p>
+<p>sudo chmod -R 775 /var/www/e-cidade</p>
 
-<p><pre>sudo chmod -R 777 /var/www/e-cidade/tmp</pre></p>
+<p>sudo chmod -R 777 /var/www/e-cidade/tmp</pre></p>
 
 <p>Lembre-se que “usuario1” varia de acordo com sua instalação e usuário utilizado.</p>
 
@@ -404,13 +404,13 @@ Feito isso, acesse a pasta /tmp:</p>
 
 <p><pre>$DB_SENHA = “”; // Ou alguma senha, se foi definida para o usuário dbportal no postgresql</pre> </p>
 
-<p><pre>$DB_SERVIDOR = “localhost”;</pre></p>
+<p><pre>$DB_SERVIDOR = “localhost”;</p>
 
-<p><pre>$DB_PORTA = “5432”;</pre></p>
+<p>$DB_PORTA = “5432”;</p>
 
-<p><pre>$DB_PORTA_ALT = “5432”;</pre> </p>
+<p>$DB_PORTA_ALT = “5432”; </p>
 
-<p><pre>$DB_BASE = “e-cidade”;</pre></p>
+<p>$DB_BASE = “e-cidade”;</pre></p>
 
 <h2>
 <a name="47---acesso-ao-e-cidade" class="anchor" href="#47---acesso-ao-e-cidade"><span class="octicon octicon-link"></span></a>4.7 - Acesso ao e-cidade</h2>
@@ -438,7 +438,13 @@ sudo gedit  /var/www/e-cidade/config/require_extensions.xml</p>
 
 <p>Onde está assim:</p>
 
-<p></p>
+<p><pre>&ltbrowsers&lt
+&ltbrowser name='firefox' versao='1.5.*'&lt&lt/browser&lt
+&ltbrowser name='firefox' versao='2.0.*'&lt&lt/browser&lt
+&ltbrowser name='firefox' versao='3.0.*'&lt&lt/browser&lt
+&ltbrowser name='firefox' versao='3.1.*'&lt&lt/browser&lt
+&lt/browsers&lt
+</pre></p>
 
 <p>Deverá ficar da seguinte maneira:</p>
 
