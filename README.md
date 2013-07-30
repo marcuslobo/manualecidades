@@ -136,7 +136,7 @@ Acrescente a seguinte linha ao final do arquivo:
   
 Agora, para instalar o PostgreSQL 8.2 deve-se executar os seguintes comandos:
 
-`sudo apt-get update`
+`sudo apt-get update`<br>
 `sudo apt-get install postgresql-8.2`
   
 **Configurando o Cluster.**
