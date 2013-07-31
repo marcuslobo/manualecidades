@@ -69,7 +69,7 @@ Direitos que outras pessoas podem ter sobre a obra ou sobre a utilização da ob
 <h1>
 <a name="2---introdu%C3%A7%C3%A3o-ao-sistema-e-cidade" class="anchor" href="#2---introdu%C3%A7%C3%A3o-ao-sistema-e-cidade"><span class="octicon octicon-link"></span></a>2 - Introdução ao Sistema e-cidade</h1>
 
-<p>O e-cidade destina-se a informatizar a gestão dos Municípios Brasileiros de forma integrada. Essa informatização contempla a integração entre os entes municipais: Prefeitura Municipal, Câmara Municipal, Autarquias, Fundações e outros.
+<p>O e-cidade destina-se a informatizar a gestão dos Municípios Brasileiros de forma integrada. Essa informatização contempla a integração entre os entes municipais: Prefeitura Municipal, Câmara Municipal, Autarquias, Fundações e outros.<br><br>
 A economia de recursos é somente uma das vantagens na adoção do e-cidade. Há liberdade de escolha dos fornecedores e garantia de continuidade do sistema, uma vez que é apoiado pelo Ministério do Planejamento. </p>
 
 <h2>
@@ -150,9 +150,9 @@ JAVA TOMCAT
 <p>Agora é necessário editar o arquivo /etc/php5/apache2/php.ini:
 <br><code>sudo gedit /etc/php5/apache2/php.ini</code></p>
 
-<p>Modifique os seguintes parâmetros:</p>
+<p>Modifique os seguintes parâmetros:
 
-<p><code>register_globals = On</code>
+<br><code>register_globals = On</code>
 <br><code>register_long_arrays = On</code>
 <br><code>register_argc_argv = On</code>
 <br><code>post_max_size = 64M</code>
@@ -167,18 +167,17 @@ JAVA TOMCAT
 <br><code>display_errors = Off</code>
 <br><code>log_errors = On</code>
 <br><code>error_log = /var/www/log/php-scripts.log</code>(retirar o ponto e vírgula da frente da linha) 
-<br><code>session.gc_maxlifetime = 7200</code></p>
+<br><code>session.gc_maxlifetime = 7200</code></br>
 
 <p>Caso a linha desses parâmetros estejam comentadas, ou seja, iniciando com o caractere '#', remova este.</p>
 
 <h2>
 <a name="43---instalando-o-postgresql-82" class="anchor" href="#43---instalando-o-postgresql-82"><span class="octicon octicon-link"></span></a>4.3 - Instalando o PostgreSQL 8.2</h2>
 
-<p>Este será o banco de dados usado para armazenar as informações que serão usadas pelo software e-cidade. Para esta instalação será necessário baixar o PostgreSQL versão 8.2.
-Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
+<p>Este será o banco de dados usado para armazenar as informações que serão usadas pelo software e-cidade. Para esta instalação será necessário baixar o PostgreSQL versão 8.2.<br>Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:<br>
 <code>sudo gedit /etc/apt/sources.list</code></p>
 
-<p>Acrescente a seguinte linha ao final do arquivo:</p>
+Acrescente a seguinte linha ao final do arquivo:<br>
 
 <p><code>deb http://br.archive.ubuntu.com/ubuntu hardy main universe</code></p>
 
@@ -188,7 +187,7 @@ Para conseguir baixar essa versão, edite o arquivo /etc/apt/sources.list:
 
 <p><strong>Configurando o Cluster.</strong></p>
 
-<p>Cluster é o conjunto de banco de dados gerenciados por uma única instância (conjunto de datafiles, arquivos de controle e processos no servidor que formam um SGDB). Nessa instalação será usado o cluster do PostgreSQL 8.2 onde será instalado o e-cidade e encoding LATIN1(ISO-8859-1). Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:</p>
+<p>Cluster é o conjunto de banco de dados gerenciados por uma única instância (conjunto de datafiles, arquivos de controle e processos no servidor que formam um SGDB).<br><br>Nessa instalação será usado o cluster do PostgreSQL 8.2 onde será instalado o e-cidade e encoding LATIN1(ISO-8859-1).<br><br>Edite o arquivo /etc/postgresql/8.2/main/pg_hba.conf:</p>
 
 <p><code>sudo gedit /etc/postgresql/8.2/main/pg_hba.conf</code></p>
 
@@ -342,8 +341,7 @@ PostgreSQL:
 <h2>
 <a name="45---configura%C3%A7%C3%A3o-do-e-cidade" class="anchor" href="#45---configura%C3%A7%C3%A3o-do-e-cidade"><span class="octicon octicon-link"></span></a>4.5 - Configuração do e-cidade</h2>
 
-<p>Nesse manual será instalada a versão 2.2.28 da solução, cujo pacote "e-cidade-2.2.28-linux.completo.tar.bz2" deverá ser baixado através do Portal do Software Público, comunidade e-cidade (use o pacote que está na pasta “Pacotes disponíveis” - em Armazenagem de Arquivos). Baixe o pacote e coloque na pasta /tmp.
-Feito isso, acesse a pasta /tmp:</p>
+<p>Nesse manual será instalada a versão 2.2.28 da solução, cujo pacote "e-cidade-2.2.28-linux.completo.tar.bz2" deverá ser baixado através do Portal do Software Público, comunidade e-cidade (use o pacote que está na pasta “Pacotes disponíveis” - em Armazenagem de Arquivos). Baixe o pacote e coloque na pasta /tmp.<br><br>Feito isso, acesse a pasta /tmp:</p>
 
 <p><code>cd /tmp</code> </p>
 
@@ -427,7 +425,7 @@ Feito isso, acesse a pasta /tmp:</p>
 
 <p><code>**ATENÇÃO! Para correto funcionamento do e-cidade, o Firefox deve estar com as janelas “pop-up” desbloqueadas para o IP do Servidor.**</code></p>
 
-<p>Compatibilidade das versões do Firefox:</p>
+<p><b>Compatibilidade das versões do Firefox:<b></p>
 
 <p>O e-cidade é compatível com a versão 3.0 ou inferior do Mozilla Firefox.</p>
 
